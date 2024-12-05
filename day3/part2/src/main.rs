@@ -4,10 +4,10 @@ fn main() {
     let total = parse_all_instrs(input)
         .scan(true, |enabled, instr| {
             match (*enabled, instr) {
-                (_, Instr::Do) => { *enabled = true; },
-                (_, Instr::Dont) => { *enabled = false; },
                 (true, Instr::Mul(a, b)) => return Some(Some((a, b))),
                 (false, Instr::Mul(_, _)) => {},
+                (_, Instr::Do) => { *enabled = true; },
+                (_, Instr::Dont) => { *enabled = false; },
             }
             Some(None)
         })
